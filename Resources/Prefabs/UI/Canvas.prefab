@@ -13,8 +13,25 @@ GameObject:
   - component: {fileID: 7113799905464301560}
   - component: {fileID: 8345592084852459203}
   - component: {fileID: 1234567890123456789}
+  - component: {fileID: 8901234567890123458}
   m_Layer: 5
   m_Name: AngleSwitchButton
+--- !u!114 &8901234567890123458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150722660204126611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rippleEffect: {fileID: 0}
+  rippleSize: 1
+  rippleDuration: 0.5
+  rippleColor: {r: 1, g: 1, b: 1, a: 0.5}
   m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
   m_Name: AngleSwitchButton
   m_EditorClassIdentifier: 
@@ -67,8 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.9716981, g: 0.9579477, b: 0.9579477, a: 0.39215687}
+  m_Material: {fileID: 2100000, guid: yourGUID, type: 2}
+  m_Color: {r: 0.9716981, g: 0.9579477, b: 0.9579477, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -589,8 +606,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
+  m_Material: {fileID: 2100000, guid: yourGUID, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1541,8 +1558,25 @@ GameObject:
   - component: {fileID: 7887684382217350137}
   - component: {fileID: 7469643862008290930}
   - component: {fileID: 4567890123456789012}
+  - component: {fileID: 8901234567890123456}
   m_Layer: 5
   m_Name: BulletTypeButton
+--- !u!114 &8901234567890123456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668196050853185840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rippleEffect: {fileID: 0}
+  rippleSize: 1
+  rippleDuration: 0.5
+  rippleColor: {r: 1, g: 1, b: 1, a: 0.5}
   m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
   m_Name: BulletTypeButton
   m_EditorClassIdentifier: 
@@ -1617,8 +1651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
+  m_Material: {fileID: 2100000, guid: yourGUID, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1959,8 +1993,25 @@ RectTransform:
   - component: {fileID: 7113799905464301560}
   - component: {fileID: 8345592084852459203}
   - component: {fileID: 1234567890123456789}
+  - component: {fileID: 8901234567890123459}
   m_Layer: 5
   m_Name: ShootButtonUp
+--- !u!114 &8901234567890123459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774798565547964259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rippleEffect: {fileID: 0}
+  rippleSize: 1
+  rippleDuration: 0.5
+  rippleColor: {r: 1, g: 1, b: 1, a: 0.5}
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
