@@ -1,7 +1,8 @@
 using UnityEngine;
-using DG.Tween;
+using DG.Tweening;
+using Photon.Pun;
 
-public class MagicBookIntroController : MonoBehaviour
+public class MagicBookIntroController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private RectTransform bookTransform;
     [SerializeField] private float animationDuration = 1.5f;
@@ -16,6 +17,15 @@ public class MagicBookIntroController : MonoBehaviour
     }
 
     public void PlayIntroAnimation()
+    {
+        if (photonView.IsMine)
+        {
+            photonView.RPC("RPC_PlayIntroAnimation", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    private void RPC_PlayIntroAnimation()
     {
         // Reset position and rotation
         bookTransform.anchoredPosition = startPosition;
@@ -34,6 +44,15 @@ public class MagicBookIntroController : MonoBehaviour
     }
 
     public void PlayOutroAnimation()
+    {
+        if (photonView.IsMine)
+        {
+            photonView.RPC("RPC_PlayOutroAnimation", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    private void RPC_PlayOutroAnimation()
     {
         Sequence sequence = DOTween.Sequence();
         

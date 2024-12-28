@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance { get; private set; }
     
+    [SerializeField] private GameObject magicBookIntroPrefab;
+    
     private Dictionary<int, int> playerScores = new Dictionary<int, int>();
     private Dictionary<int, int> playerPointsLost = new Dictionary<int, int>();
     private const int SCORE_TO_WIN = 100;
@@ -37,6 +39,27 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void Start()
     {
         ResetRoundScores();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            ShowMagicBookIntro();
+        }
+    }
+
+    private void ShowMagicBookIntro()
+    {
+        if (magicBookIntroPrefab != null)
+        {
+            GameObject bookIntro = PhotonNetwork.Instantiate(
+                "Prefabs/Effects/MagicBookIntro",
+                Vector3.zero,
+                Quaternion.identity);
+            
+            var introController = bookIntro.GetComponent<MagicBookIntroController>();
+            if (introController != null)
+            {
+                introController.PlayIntroAnimation();
+            }
+        }
     }
 
     public void ResetRoundScores()
