@@ -90,7 +90,7 @@ public class UIInputController : MonoBehaviourPunCallbacks
         }
     }
 
-    private void TriggerSpecialAttack()
+    public void TriggerSpecialAttack()
     {
         if (!photonView.IsMine || !isSpecialAttackEnabled) return;
         
