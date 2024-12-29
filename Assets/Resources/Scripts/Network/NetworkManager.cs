@@ -47,6 +47,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("已加入房间！");
-        PhotonNetwork.Instantiate("Resources/PlayerPrefab", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("Prefabs/Player/PlayerPrefab", Vector3.zero, Quaternion.identity);
     }
 }
