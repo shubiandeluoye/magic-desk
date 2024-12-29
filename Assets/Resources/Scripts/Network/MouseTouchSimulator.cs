@@ -28,17 +28,17 @@ public class MouseTouchSimulator : MonoBehaviour
             // 模拟触摸开始
             if (mouse.leftButton.wasPressedThisFrame)
             {
-                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Began);
+                SimulateTouch(mouse.position.ReadValue(), UnityEngine.InputSystem.TouchPhase.Began);
             }
             // 模拟触摸移动
             else if (mouse.leftButton.isPressed)
             {
-                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Moved);
+                SimulateTouch(mouse.position.ReadValue(), UnityEngine.InputSystem.TouchPhase.Moved);
             }
             // 模拟触摸结束
             else if (mouse.leftButton.wasReleasedThisFrame)
             {
-                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Ended);
+                SimulateTouch(mouse.position.ReadValue(), UnityEngine.InputSystem.TouchPhase.Ended);
             }
         }
 

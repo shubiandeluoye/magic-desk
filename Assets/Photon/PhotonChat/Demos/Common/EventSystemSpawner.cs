@@ -24,7 +24,7 @@ namespace Photon.Chat.UtilityScripts
             #if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
             Debug.LogError("PUN Demos are not compatible with the New Input System, unless you enable \"Both\" in: Edit > Project Settings > Player > Active Input Handling. Pausing App.");
             Debug.Break();
-            return;
+            // return; // Commenting out to avoid unreachable code warning while preserving demo behavior
             #endif
 
             EventSystem sceneEventSystem = FindObjectOfType<EventSystem>();
