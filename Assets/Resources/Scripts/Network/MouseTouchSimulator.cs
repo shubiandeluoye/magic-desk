@@ -51,7 +51,7 @@ public class MouseTouchSimulator : MonoBehaviour
         }
     }
 
-    void SimulateTouch(Vector2 position, TouchPhase phase)
+    void SimulateTouch(Vector2 position, UnityEngine.InputSystem.TouchPhase phase)
     {
         // 使用新的输入系统模拟触摸
         var touchState = new TouchState
