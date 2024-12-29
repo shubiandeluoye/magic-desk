@@ -39,6 +39,24 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - ApplyStun
+  - RPC_EndMatch
+  - RPC_HandleRoundWin
+  - RPC_PlayerOutOfBounds
+  - RPC_PlayImpactParticles
+  - RPC_PlayIntroAnimation
+  - RPC_PlayOutroAnimation
+  - RPC_PlaySpecialAnimation
+  - RPC_ResetScores
+  - RPC_StartMatch
+  - RPC_SyncPointsLost
+  - RPC_SyncScore
+  - RPC_TriggerShake
+  - RPC_TriggerSpecialAttack
+  - RPC_UpdateMatchFormat
+  - SyncDamage
+  - SyncHitCounts
+  - SyncRotation
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
