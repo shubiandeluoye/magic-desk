@@ -27,6 +27,33 @@ public class PlayerFireController : MonoBehaviourPunCallbacks
         // This will be set up through the GameManager
     }
 
+    private void Update()
+    {
+        if (!photonView.IsMine) return;
+
+        // Handle keyboard input for bullet firing
+        if (Input.GetKeyDown(KeyCode.N)) // down 30°
+        {
+            FireBullet(BulletType.Small, ShootDirection.Down, false); // false for 30°
+            Debug.Log("Firing small bullet at 30° downward");
+        }
+        if (Input.GetKeyDown(KeyCode.K)) // up 30°
+        {
+            FireBullet(BulletType.Small, ShootDirection.Up, false); // false for 30°
+            Debug.Log("Firing small bullet at 30° upward");
+        }
+        if (Input.GetKeyDown(KeyCode.J)) // straight
+        {
+            FireBullet(BulletType.Small, ShootDirection.Straight, false);
+            Debug.Log("Firing small bullet straight");
+        }
+        if (Input.GetKeyDown(KeyCode.M)) // toggle 45°/30°
+        {
+            ToggleAngle();
+            Debug.Log("Toggled firing angle: " + (is45Degree ? "45°" : "30°"));
+        }
+    }
+
     private void DeterminePlayerPosition()
     {
         if (!photonView.IsMine) return;
