@@ -23,12 +23,12 @@ namespace Photon.Pun.Demo.PunBasics
 	/// Deals with quiting the room and the game
 	/// Deals with level loading (outside the in room synchronization)
 	/// </summary>
-	public class GameManager : MonoBehaviourPunCallbacks
+	public class PunBasicsTutorialGameManager : MonoBehaviourPunCallbacks
     {
 
 		#region Public Fields
 
-		static public GameManager Instance;
+		static public PunBasicsTutorialGameManager Instance;
 
 		#endregion
 

@@ -63,7 +63,7 @@ namespace Photon.Pun.Demo.PunBasics
             }
 
             // #Important
-            // used in GameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
+            // used in PunBasicsTutorialGameManager.cs: we keep track of the localPlayer instance to prevent instanciation when levels are synchronized
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = gameObject;
