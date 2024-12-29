@@ -1,62 +1,67 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Controls;
 
+[RequireComponent(typeof(PlayerControls))]
 public class MouseTouchSimulator : MonoBehaviour
 {
     public float speed = 5.0f;
     private Rigidbody rb;
+    private Mouse mouse;
+    private Keyboard keyboard;
+    private PlayerControls playerControls;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        mouse = Mouse.current;
+        keyboard = Keyboard.current;
+        playerControls = GetComponent<PlayerControls>();
     }
 
     void Update()
     {
         // 如果在编辑器中运行，并且没有触摸输入
-        if (Application.isEditor && Input.touchCount == 0)
+        if (Application.isEditor && !Touchscreen.current.touches[0].isInProgress)
         {
             // 模拟触摸开始
-            if (Input.GetMouseButtonDown(0))
+            if (mouse.leftButton.wasPressedThisFrame)
             {
-                SimulateTouch(Input.mousePosition, TouchPhase.Began);
+                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Began);
             }
             // 模拟触摸移动
-            else if (Input.GetMouseButton(0))
+            else if (mouse.leftButton.isPressed)
             {
-                SimulateTouch(Input.mousePosition, TouchPhase.Moved);
+                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Moved);
             }
             // 模拟触摸结束
-            else if (Input.GetMouseButtonUp(0))
+            else if (mouse.leftButton.wasReleasedThisFrame)
             {
-                SimulateTouch(Input.mousePosition, TouchPhase.Ended);
+                SimulateTouch(mouse.position.ReadValue(), TouchPhase.Ended);
             }
         }
 
-        // 键盘控制逻辑
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        if (moveHorizontal != 0 || moveVertical != 0)
+        // 使用新的输入系统获取移动输入
+        Vector2 movement = playerControls.GetMovementInput();
+        if (movement.magnitude > 0)
         {
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-            // 处理键盘输入的移动逻辑
-            HandleMovement(movement);
+            Vector3 movement3D = new Vector3(movement.x, 0.0f, movement.y);
+            HandleMovement(movement3D);
         }
     }
 
-    void SimulateTouch(Vector3 position, TouchPhase phase)
+    void SimulateTouch(Vector2 position, TouchPhase phase)
     {
-        Touch touch = new Touch
+        // 使用新的输入系统模拟触摸
+        var touchState = new TouchState
         {
-            fingerId = 0,
-            position = position,
             phase = phase,
-            type = TouchType.Direct
+            position = position,
+            touchId = 1
         };
 
-        // 使用反射将模拟的触摸输入传递给 Unity 的 Input 类
-        typeof(Input).GetMethod("SimulateTouch", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
-            .Invoke(null, new object[] { touch });
+        InputSystem.QueueStateEvent(Touchscreen.current, touchState);
     }
 
     void HandleMovement(Vector3 movement)
