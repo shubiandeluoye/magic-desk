@@ -1,4 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.InputSystem.Layouts;
+using UnityEngine.InputSystem.OnScreen;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -6,6 +10,9 @@ using Photon.Pun;
 [AddComponentMenu("Input/On-Screen Controls")]
 public class UIInputController : MonoBehaviourPunCallbacks
 {
+    [Header("移动控制")]
+    [SerializeField] private OnScreenStick movementStick;
+    
     [Header("射击按钮")]
     [SerializeField] private Button upShootButton;
     [SerializeField] private Button downShootButton;
@@ -47,7 +54,8 @@ public class UIInputController : MonoBehaviourPunCallbacks
             specialAttackButton.interactable = false; // 初始时禁用特殊攻击按钮
         }
 
-        // Input system initialization removed
+        // 确保启用了增强型触摸支持
+        EnhancedTouchSupport.Enable();
     }
 
     public void SetShootingAngle(bool is45)
