@@ -26,6 +26,13 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
     
     private void Awake()
     {
+        // Check if this GameObject is a root object
+        if (transform.parent != null)
+        {
+            Debug.LogError("CameraShakeManager must be on a root GameObject for DontDestroyOnLoad to work!");
+            transform.SetParent(null); // Make it a root object
+        }
+
         if (Instance == null)
         {
             Instance = this;
@@ -37,16 +44,31 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
             return;
         }
         
+        // Initialize cameras
         if (mainCamera == null)
+        {
             mainCamera = Camera.main;
-        if (mainCamera != null)
-            originalPosition = mainCamera.transform.position;
+            if (mainCamera == null)
+            {
+                Debug.LogError("No main camera found in the scene!");
+                return;
+            }
+        }
+        originalPosition = mainCamera.transform.position;
             
-        // Initialize virtual cameras if not set
+        // Try to find virtual cameras by tag if not assigned
         if (battleCamera == null)
-            Debug.LogWarning("Battle camera not assigned in CameraShakeManager");
+        {
+            battleCamera = GameObject.FindGameObjectWithTag("BattleCamera")?.GetComponent<CinemachineVirtualCamera>();
+            if (battleCamera == null)
+                Debug.LogError("Battle camera not assigned and couldn't be found by tag!");
+        }
+        
         if (zoomCamera == null)
-            Debug.LogWarning("Zoom camera not assigned in CameraShakeManager");
+        {
+            zoomCamera = GameObject.FindGameObjectWithTag("ZoomCamera")?.GetComponent<CinemachineVirtualCamera>();
+            if (zoomCamera == null)
+                Debug.LogError("Zoom camera not assigned and couldn't be found by tag!");
     }
 
     // Interface for triggering screen shake
