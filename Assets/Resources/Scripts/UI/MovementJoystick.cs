@@ -14,7 +14,7 @@ public class MovementJoystick : MonoBehaviourPunCallbacks, IPointerDownHandler, 
     private Vector2 joystickCenter;
     private bool isDragging = false;
     [SerializeField] private PlayerController playerController;
-    private PhotonView photonView;
+    private new PhotonView photonView;
 
     private void Start()
     {
