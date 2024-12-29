@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 
+[RequireComponent(typeof(PlayerControls))]
 public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] private float moveSpeed = 5f;
@@ -19,10 +20,8 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (!photonView.IsMine) return;
 
-        // Handle keyboard input for testing
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector2 keyboardInput = new Vector2(horizontal, vertical);
+        // Handle keyboard input using new Input System
+        Vector2 keyboardInput = PlayerControls.Instance.GetMovementInput();
         
         if (keyboardInput.magnitude > 0.1f)
         {
