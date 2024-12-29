@@ -12,7 +12,7 @@ public class BulletBehavior : MonoBehaviourPunCallbacks
     }
 
     public BulletType type;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
 
     // Animation and effect parameters
     private const float LARGE_BULLET_ANIMATION_DURATION = 1.5f;
@@ -26,7 +26,7 @@ public class BulletBehavior : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         specialEffectAnimator = GetComponent<Animator>();
         impactParticleSystem = GetComponent<ParticleSystem>();
         
@@ -36,17 +36,17 @@ public class BulletBehavior : MonoBehaviourPunCallbacks
             case BulletType.Small:
             case BulletType.Medium:
                 // Small and medium bullets can bounce
-                rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 break;
             case BulletType.Large:
                 // Large bullets ignore wall collisions
-                Physics.IgnoreLayerCollision(gameObject.layer, 8); // Ignore bounce walls
-                Physics.IgnoreLayerCollision(gameObject.layer, 9); // Ignore middle walls
+                Physics2D.IgnoreLayerCollision(gameObject.layer, 8); // Ignore bounce walls
+                Physics2D.IgnoreLayerCollision(gameObject.layer, 9); // Ignore middle walls
                 break;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollision(collision.gameObject);
     }
@@ -166,12 +166,12 @@ public class BulletBehavior : MonoBehaviourPunCallbacks
 
     private void PushPlayer(GameObject player)
     {
-        Rigidbody playerRb = player.GetComponent<Rigidbody>();
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
         if (playerRb != null)
         {
             // Push player back by half the map distance
-            Vector3 pushDirection = (player.transform.position - transform.position).normalized;
-            playerRb.AddForce(pushDirection * PUSH_FORCE, ForceMode.Impulse);
+            Vector2 pushDirection = (player.transform.position - transform.position).normalized;
+            playerRb.AddForce(pushDirection * PUSH_FORCE, ForceMode2D.Impulse);
         }
     }
 
