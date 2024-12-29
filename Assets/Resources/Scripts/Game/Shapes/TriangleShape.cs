@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Photon.Pun;
 public class TriangleShape : BaseShape
 {
     [Header("Triangle Settings")]

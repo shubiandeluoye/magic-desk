@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-
+using Photon.Pun;
 public class TrapezoidShape : BaseShape
 {
     [Header("Trapezoid Settings")]
