@@ -13,11 +13,26 @@ public class MovementJoystick : MonoBehaviourPunCallbacks, IPointerDownHandler, 
     private Vector2 inputVector;
     private Vector2 joystickCenter;
     private bool isDragging = false;
-    private PlayerController playerController;
+    [SerializeField] private PlayerController playerController;
+    private PhotonView photonView;
 
     private void Start()
     {
-        playerController = GetComponentInParent<PlayerController>();
+        photonView = GetComponent<PhotonView>();
+        if (photonView == null)
+        {
+            Debug.LogError("MovementJoystick missing PhotonView component!");
+        }
+
+        if (playerController == null)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+            if (playerController == null)
+            {
+                Debug.LogError("MovementJoystick could not find PlayerController!");
+            }
+        }
+
         if (joystickBackground == null)
             joystickBackground = GetComponent<RectTransform>();
         if (joystickHandle == null)

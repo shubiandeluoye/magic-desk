@@ -15,6 +15,25 @@ public class PlayerController : MonoBehaviourPunCallbacks, IPunObservable
             rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (!photonView.IsMine) return;
+
+        // Handle keyboard input for testing
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector2 keyboardInput = new Vector2(horizontal, vertical);
+        
+        if (keyboardInput.magnitude > 0.1f)
+        {
+            // Normalize keyboard input to match joystick behavior
+            OnMovementInput(keyboardInput.normalized);
+            
+            // Log movement for debugging
+            Debug.Log($"Keyboard Input: {keyboardInput.normalized}, IsMine: {photonView.IsMine}");
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!photonView.IsMine || isStunned) return;

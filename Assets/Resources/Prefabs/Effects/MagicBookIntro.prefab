@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1234567890123456789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: yourGUID, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d7798a8daf85c42aa30419b3fc0e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bookTransform: {fileID: 2345678901234567890}
