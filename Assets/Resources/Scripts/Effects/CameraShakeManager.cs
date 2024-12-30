@@ -1,11 +1,11 @@
-
 using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 using Cinemachine;
 
-public class CameraShakeManager : MonoBehaviourPunCallbacks
+public sealed class CameraShakeManager : MonoBehaviourPunCallbacks 
 {
+    #region Methods
     public static CameraShakeManager Instance { get; private set; }
     
     [Header("Camera References")]
@@ -25,7 +25,7 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
     private bool isShaking = false;
     private bool isSpecialAttackInProgress = false;
     
-    private void Awake()
+    protected override void Awake()
     {
         // Check if this GameObject is a root object
         if (transform.parent != null)
@@ -83,7 +83,7 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void RPC_TriggerShake(float duration, float magnitude)
+    internal void RPC_TriggerShake(float duration, float magnitude)
     {
         if (mainCamera != null && !isShaking)
         {
@@ -91,7 +91,7 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
         }
     }
 
-    private IEnumerator ShakeCoroutine(float duration, float magnitude)
+    internal IEnumerator ShakeCoroutine(float duration, float magnitude)
     {
         isShaking = true;
         float elapsed = 0f;
@@ -118,13 +118,13 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
     }
     
     [PunRPC]
-    public void RPC_TriggerSpecialAttack(Vector3 playerPosition, bool isLeftSidePlayer)
+    internal void RPC_TriggerSpecialAttack(Vector3 playerPosition, bool isLeftSidePlayer)
     {
         if (isSpecialAttackInProgress) return;
         StartCoroutine(SpecialAttackSequence(playerPosition, isLeftSidePlayer));
     }
     
-    private IEnumerator SpecialAttackSequence(Vector3 playerPosition, bool isLeftSidePlayer)
+    internal IEnumerator SpecialAttackSequence(Vector3 playerPosition, bool isLeftSidePlayer)
     {
         isSpecialAttackInProgress = true;
         
@@ -191,4 +191,5 @@ public class CameraShakeManager : MonoBehaviourPunCallbacks
         
         isSpecialAttackInProgress = false;
     }
+    #endregion
 }
